@@ -47,8 +47,8 @@
         <tabset class="member-tabset" #memberTabs>
             <tab heading='About {{member?.knownAs}}' (selectTab)="onTabActivated($event)">
                 <h4>Description</h4>
-                <hr>
-                <hr>
+                <hr style="visibility: hidden;">
+                <hr style="visibility: hidden;">
                 <p class="p" *ngIf="member?.introduction">{{member?.introduction}}</p>
                 <p class="p" *ngIf="!member?.introduction">{{member?.knownAs}} hasn't added any description yet</p>
             </tab>

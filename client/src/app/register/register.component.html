@@ -1,7 +1,7 @@
 <div class="formDiv">
     <form class="formform" [formGroup]="registerForm" (ngSubmit)="register()" autocomplete="off">
         <h2 class="tect-center text-primary">Sign Up</h2>
-        <hr>
+        <hr style="visibility: hidden;">
         <div class="form-group">
             <input 
                 [class.is-invalid]='registerForm.get("username").errors && registerForm.get("username").touched'

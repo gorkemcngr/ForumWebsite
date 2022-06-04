@@ -1,7 +1,7 @@
 <div *ngIf="!post?.postVisibility && user?.username===post?.userName">
 
     <h3>Your post has not been approved yet</h3>
-    <hr>
+    <hr style="visibility: hidden;">
     <p>You can make changes on your Post</p>
     <div class="topics" *ngIf="!changePostMode">
         <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
@@ -60,7 +60,7 @@
                   
             </div>
         </form>
-        <hr>
+      
         <div *ngIf="addPostCheck" class="alert alert-danger" role="alert">
             Please Fill in all required fields to add a comment
           </div>
@@ -82,8 +82,8 @@
         
     </div>
     
-<hr>
-<h2>Answers</h2>
+
+<h2 style="margin-top: 50px;">Answers</h2>
 <div  class="topics"  *ngFor="let comment of comments">
     <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
         <div *ngIf="user?.username!=comment?.userName" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
@@ -102,7 +102,7 @@
         
 
 </div>
-<hr>
+<hr style="visibility: hidden;">
 <div class="d-flex justify-content-center" *ngIf="pagination && comments.length >=1 ">
   <pagination 
       [boundaryLinks]="true" 
@@ -117,11 +117,9 @@
   </pagination>
 </div>
 
-<hr>
-<hr>
 
 <form *ngIf="(accountService.currentUser$ | async) !== null" class="commentForm" #CommentForm="ngForm" (ngSubmit)="AddComment(CommentForm)" autocomplete="off">
-    <p>Add Your Comment</p>
+    <p style="margin-top: 20px;">Add Your Comment</p>
     <textarea
       name="answer"
       rows="5"

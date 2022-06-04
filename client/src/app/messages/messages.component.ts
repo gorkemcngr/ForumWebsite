@@ -30,7 +30,6 @@ export class MessagesComponent implements OnInit {
       this.messages = response.result;
       this.pagination = response.pagination;
       this.loading = false;
-      console.log(this.messages);
     })
   }
 

@@ -96,7 +96,6 @@ export class CommentComponent implements OnInit {
   fillOldPost(nonUpdatedPost){
     this.post.content=nonUpdatedPost.content;
     this.post.title=nonUpdatedPost.title;
-    console.log("asdfasdf");
   }
 
    float2int (value) {

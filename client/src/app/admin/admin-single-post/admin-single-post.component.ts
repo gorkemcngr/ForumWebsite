@@ -75,7 +75,6 @@ export class AdminSinglePostComponent implements OnInit {
   }
   onChange($event) {
     this.post.categoryId=this.model.categoryId;
-    console.log(this.post.categoryId);
 }
 
 }

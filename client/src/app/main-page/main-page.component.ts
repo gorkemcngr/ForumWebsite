@@ -33,7 +33,7 @@ export class MainPageComponent implements OnInit {
     this.GetCategories();
   }
   changeWebsite(e) {  
-    console.log(e.target.value);  
+
   }  
 
   loadPosts() {
@@ -65,7 +65,7 @@ export class MainPageComponent implements OnInit {
       this.addPostCheck=true;
       return;
     }
-    console.log(this.model);
+
     this.postService.AddPost(this.model).subscribe(response => {
       this.posts.push(response);
       this.route.navigate(['/comment/'+response.id]);
@@ -81,6 +81,9 @@ export class MainPageComponent implements OnInit {
 
   longContent(content:string){
     return content.substring(0, 150).concat("...").toString();
+  }
+  mediumLongcontent(content:string){
+    return content.substring(0, 40).concat("...").toString();
   }
 
 }

@@ -22,7 +22,6 @@ export class AdminCategoryComponent implements OnInit {
   GetCategories() {
     this.postService.getcategories().subscribe(response =>{
       this.categories =response;
-      console.log("asdff");
     })
   }
   AddCategory(){

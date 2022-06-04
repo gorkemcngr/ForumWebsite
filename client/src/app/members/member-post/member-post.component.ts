@@ -29,7 +29,6 @@ export class MemberPostComponent implements OnInit {
     this.postService.getUsersPosts(this.postParams).subscribe(response =>{
       this.posts =response.result;
      this.pagination=response.pagination;
-     console.log(this.posts);
     })
     
   }

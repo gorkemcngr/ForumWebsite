@@ -27,7 +27,6 @@ export class MemberPendingPostComponent implements OnInit {
     this.postService.getPendingComments(this.postParams).subscribe(response =>{
       this.posts =response.result;
      this.pagination=response.pagination;
-     console.log(this.posts);
     })
     
   }

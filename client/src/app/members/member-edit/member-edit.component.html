@@ -38,7 +38,7 @@
     <div class="col-8">
         <tabset class="member-tabset">
             <tab heading='About {{member.knownAs}}'>
-                <hr>
+                <hr style="visibility: hidden;">
                 <form #editForm="ngForm" id="editForm" (ngSubmit)="updateMember()">
                     <h4>Description</h4>
                     <textarea class="form-control" [(ngModel)]="member.introduction" name="introduction" rows="6"></textarea>
@@ -53,19 +53,19 @@
                 
             </tab>
             <tab heading='Edit Photos'>
-                <hr>
+                <hr style="visibility: hidden;">
                 <app-photo-editor [member]="member"></app-photo-editor>
             </tab>
             <tab heading="{{member.knownAs}}'s comments " >
-                <hr>
+                <hr style="visibility: hidden;">
                 <app-member-comments [userName]="member.username"></app-member-comments>
             </tab>
             <tab heading='Liked Comments ♥' >
-                <hr>
+                <hr style="visibility: hidden;">
                 <app-member-likecomments [userId]="member.id"></app-member-likecomments>
             </tab>
             <tab heading='Pending Posts ' >
-                <hr>
+                <hr style="visibility: hidden;">
                 <app-member-pending-post ></app-member-pending-post>
             </tab>
         </tabset>
