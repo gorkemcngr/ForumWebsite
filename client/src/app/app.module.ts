@@ -39,6 +39,8 @@ import { MemberPendingPostComponent } from './members/member-pending-post/member
 import { MemberPostComponent } from './members/member-post/member-post.component';
 import { AdminCategoryComponent } from './admin/admin-category/admin-category.component';
 import { LikesModalComponent } from './modals/likes-modal/likes-modal.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 
 @NgModule({
@@ -79,6 +81,7 @@ import { LikesModalComponent } from './modals/likes-modal/likes-modal.component'
     ReactiveFormsModule,
     FileUploadModule,
     NgxGalleryModule,
+    NgxSpinnerModule,
     ModalModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -90,7 +93,8 @@ import { LikesModalComponent } from './modals/likes-modal/likes-modal.component'
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
