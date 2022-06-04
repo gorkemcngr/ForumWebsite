@@ -1,0 +1,51 @@
+.topics{
+    display: flex;
+    border: 2px solid rgb(180, 173, 173);
+    cursor: pointer;
+    height: 80px;
+}
+.username{
+    margin: 10px;
+    padding: 10px;
+    flex: 1;
+    font-size: 20px;
+}
+.username:hover{
+    font-size: 21px;
+    text-decoration: underline;
+}
+.TitleContent{
+    margin: 10px;
+    flex: 5;
+   
+}
+.PostTitle{
+    font-size: 20px;
+}
+.PostContent{
+    font-size: 13px;
+}
+.PostCategory{
+    float: right;
+    flex:1;
+    margin-right: 50px;
+}
+.comentButton{
+    float: right;
+
+}
+.categorySelect{
+    margin: 10px;
+    padding: 10px;
+}
+.selectC{
+    margin-left: 10px;
+}
+.userPhoto{
+    width: 60px;
+    height: 60px;
+    margin: 7px;
+}
+.date{
+    padding-right: 10px;
+}

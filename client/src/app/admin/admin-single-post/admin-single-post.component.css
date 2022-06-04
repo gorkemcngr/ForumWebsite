@@ -1,0 +1,90 @@
+.topics{
+    display: flex;
+    border: 2px solid rgb(180, 173, 173);
+}
+.username{
+    margin: 10px;
+    padding: 10px;
+    cursor: pointer;
+}
+.TitleContent{
+    margin: 10px;
+   flex:5;
+}
+.PostTitle{
+    font-size: 20px;
+}
+.PostContent{
+    font-size: 13px;
+    flex:5;
+}
+.username{
+    flex:1;
+    font-size: 20px;
+}
+.CommentForm{
+    display: flex;
+}
+.comentButton{
+    float: right;
+    margin: 10px;
+    padding: 10px;
+}
+.PostCategory{
+
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.fa{
+    font-size:40px;
+    padding: 12px;
+}
+.like{
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+    cursor: pointer;
+
+}
+.likeP{
+    margin-right: 15px;
+}
+.date{
+    width: 115px;
+}
+.username:hover{
+    font-size: 21px;
+    text-decoration: underline;
+}
+.userPhoto{
+    width: 60px;
+    height: 60px;
+    margin: 7px;
+}
+.category-Button{
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+    justify-content: space-around;
+}
+.discardBtn{
+    height: 50px;
+
+    width: 160px;
+}
+.fa{
+    background-color: rgb(37, 170, 25);
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.fa-times{
+    background-color: red;
+    padding-left: 10px;
+    margin-left: 10px;
+}

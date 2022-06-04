@@ -1,0 +1,26 @@
+<ng-container *ngFor="let post of posts">
+
+<div *ngIf="!post?.postVisibility ">
+
+   <app-admin-single-post 
+   (deletePost)="RefReshPage($event)"
+   (acceptPost)="RefReshPage($event)" [post]="post"></app-admin-single-post>
+
+</div>
+
+</ng-container>
+
+<div class="d-flex justify-content-center" *ngIf="pagination && posts.length >= 1">
+   <pagination 
+       [boundaryLinks]="true" 
+       [totalItems]="pagination.totalItems"
+       [itemsPerPage]="pagination.itemsPerPage"
+       [(ngModel)]="pagination.currentPage"
+       (pageChanged)="pageChanged($event)"
+       previousText="&lsaquo;" 
+       nextText="&rsaquo;" 
+       firstText="&laquo;" 
+       lastText="&raquo;">
+   </pagination>
+ </div>
+ 

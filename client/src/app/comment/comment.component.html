@@ -1,0 +1,138 @@
+<div *ngIf="!post?.postVisibility && user?.username===post?.userName">
+
+    <h3>Your post has not been approved yet</h3>
+    <hr>
+    <p>You can make changes on your Post</p>
+    <div class="topics" *ngIf="!changePostMode">
+        <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+    <div routerLink="/detail/{{post?.userName}}" class="username">{{post?.userName}}</div>
+            <div class="TitleContent">
+                <div class="PostTitle">{{post?.title}}</div>
+                <div class="PostContent">{{post?.content}}</div>
+            </div>
+            <div class="category-Button">
+                <div class="PostCategory">{{post?.categoryName}}</div>
+                <button (click)="GoToChangeMod()" class="btn btn-success comentButton">Change Post</button>
+            </div>
+            
+            
+        </div>
+        <ng-container *ngIf="changePostMode">
+        <form  *ngIf="(accountService.currentUser$ | async) !== null"  class="commentForm" #PostForm="ngForm" (ngSubmit)="ChangePost()" autocomplete="off">
+
+        <div class="topics">
+            <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+        <div routerLink="/detail/{{post?.userName}}" class="username">{{post?.userName}}</div>
+                <div class="TitleContent">
+                    <div class="PostTitle">
+
+                        <input
+                name="title"          
+                type="text" 
+                [(ngModel)]="post.title"
+                placeholder="Title"
+                class="form-control">
+
+                        
+                    </div>
+                    <div class="PostContent">
+
+                        <textarea
+                        name="content"
+                        rows="5"
+                        [(ngModel)]="post.content"
+                        type="textarea" 
+                        placeholder="Content"
+                        class="form-control">
+                          
+                      </textarea>
+
+                    </div>
+                </div>
+                <div class="PostCategory">
+                  <select class="selectC" name="categoryId" id="categoryId" [(ngModel)]="model.categoryId">
+                    <option *ngFor="let category of categories"  name="categoryId" [value]="category.id">{{category.categoryName}}</option>
+                  </select>
+                  <button (click)="GoToNonChangeMod()" class="discardBtn btn btn-danger comentButton">Discard Changes</button>
+                  <button type="submit" class="btn btn-success comentButton">Change Post</button>
+                </div>
+               
+                  
+            </div>
+        </form>
+        <hr>
+        <div *ngIf="addPostCheck" class="alert alert-danger" role="alert">
+            Please Fill in all required fields to add a comment
+          </div>
+    </ng-container>
+
+
+</div>
+<ng-container *ngIf="post?.postVisibility">
+    <h2>Topic</h2>
+<div class="topics">
+    <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+    <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>
+    <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post.userName}}</div>
+        <div class="TitleContent">
+            <div class="PostTitle">{{post?.title}}</div>
+            <div class="PostContent">{{post?.content}}</div>
+        </div>
+        <div class="PostCategory">{{post?.categoryName}}</div>
+        
+    </div>
+    
+<hr>
+<h2>Answers</h2>
+<div  class="topics"  *ngFor="let comment of comments">
+    <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+        <div *ngIf="user?.username!=comment?.userName" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
+        <div *ngIf="user?.username==comment?.userName" routerLink="/member/edit" class="username">{{comment.userName}}</div>
+        <div class="TitleContent">
+            <div class="PostTitle">{{comment.answer}}</div>
+        </div>
+        <div class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)" *ngIf="(accountService.currentUser$ | async) !== null" [classList]="GetCommentIsLike(comment?.id)"  class="  fa-6" ></i>
+            <p (click)="openRolesModal(user)" class="likeP" *ngIf="comment.likeCount !==0"  >{{comment.likeCount}} kişi beğendi</p> 
+            <p class="likeP" *ngIf="comment.likeCount ===0"  style="margin-bottom: 40px;"></p> 
+        </div>
+        <div class="date">
+            {{comment?.created | timeago}}
+        </div>
+        
+        
+
+</div>
+<hr>
+<div class="d-flex justify-content-center" *ngIf="pagination && comments.length >=1 ">
+  <pagination 
+      [boundaryLinks]="true" 
+      [totalItems]="pagination.totalItems"
+      [itemsPerPage]="pagination.itemsPerPage"
+      [(ngModel)]="pagination.currentPage"
+      (pageChanged)="pageChanged($event)"
+      previousText="&lsaquo;" 
+      nextText="&rsaquo;" 
+      firstText="&laquo;" 
+      lastText="&raquo;">
+  </pagination>
+</div>
+
+<hr>
+<hr>
+
+<form *ngIf="(accountService.currentUser$ | async) !== null" class="commentForm" #CommentForm="ngForm" (ngSubmit)="AddComment(CommentForm)" autocomplete="off">
+    <p>Add Your Comment</p>
+    <textarea
+      name="answer"
+      rows="5"
+      [(ngModel)]="model.answer" 
+      type="textarea" 
+      placeholder="answer"
+      class="form-control">
+        
+    </textarea>
+    <button type="submit" class="btn btn-success comentButton">Add Comment</button>
+  </form>
+
+
+</ng-container>

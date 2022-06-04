@@ -1,0 +1,30 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Users Who Liked</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+      <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form #rolesForm="ngForm" id="likesForm">
+        <ng-container *ngFor="let user of users">
+        <div *ngIf="user.username=== userr?.username" (click)="routeUserEdit()" class="form-check" >
+            <img class="userPhoto rounded-circle" src="{{user?.photoUrl || './assets/user.png'}}" alt="">
+            <label class=" mt-3 ml-3 username">{{user.username}}</label>
+            
+        </div>
+    </ng-container>
+    <ng-container *ngFor="let user of users">
+        <div *ngIf="user?.username!== userr?.username" (click)="routeUserDetail(user?.username)" class="form-check" >
+            <img class="userPhoto rounded-circle" src="{{user?.photoUrl || './assets/user.png'}}" alt="">
+            <label class="mt-3 ml-3 username">{{user?.username}}</label>
+            
+        </div>
+    </ng-container>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+
+  </div>
+

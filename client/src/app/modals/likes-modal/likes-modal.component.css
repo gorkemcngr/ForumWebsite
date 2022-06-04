@@ -1,0 +1,20 @@
+.form-check{
+    display: flex;
+}
+.userPhoto{
+    width: 50px;
+    height: 50px;
+    margin: 7px;
+}
+.form-check{
+    cursor: pointer;
+}
+.username{
+    cursor: pointer;
+}
+label{
+    color: black;
+}
+.modal-title{
+    color: black;
+}

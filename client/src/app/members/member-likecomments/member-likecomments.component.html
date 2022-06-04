@@ -1,0 +1,29 @@
+<div  class="topics" routerLink="/comment/{{comment.postId}}"  *ngFor="let comment of comments">
+    
+    <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+    <div class="username" >{{comment.userName}}</div>
+    <div class="TitleContent">
+        <div class="PostTitle">{{comment.answer}}</div>
+    </div>
+    <div class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)"   class="  fa-6" ></i>
+        <p class="likeP" *ngIf="comment.likeCount !==0"  >{{comment.likeCount}} kişi beğendi</p> 
+        <p class="likeP" *ngIf="comment.likeCount ===0"  style="margin-bottom: 40px;"></p> 
+    </div>
+  
+    
+
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="pagination && comments.length>=1">
+    <pagination 
+        [boundaryLinks]="true" 
+        [totalItems]="pagination.totalItems"
+        [itemsPerPage]="pagination.itemsPerPage"
+        [(ngModel)]="pagination.currentPage"
+        (pageChanged)="pageChanged($event)"
+        previousText="&lsaquo;" 
+        nextText="&rsaquo;" 
+        firstText="&laquo;" 
+        lastText="&raquo;">
+    </pagination>
+  </div>

@@ -1,0 +1,10 @@
+a{
+    cursor:pointer;
+    background-color: #6c8065;
+    color: white;
+}
+
+.refresh :hover{
+    cursor: pointer;
+    color: rgb(116, 148, 255);
+}

@@ -1,0 +1,12 @@
+.img-circle {
+    max-height: 50px;
+}
+.messageBody{
+    border: 1px solid white;
+}
+th{
+    color: white;
+}
+tr{
+    color: white;
+}

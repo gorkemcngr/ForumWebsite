@@ -1,0 +1,12 @@
+.row{
+    margin-top: 15px;
+}
+td{
+    color: white;
+}
+th{
+    color: white;
+}
+.user{
+    border: 1px solid white;
+}

@@ -1,0 +1,57 @@
+<nav class="nav navbar-expand-md navbar-dark  bg-primary">
+  <ul class="navbar-nav mr-auto">
+  
+      <li class="nav-item">
+        <a class="nav-link forumWebsite"  routerLink='/' routerLinkActive="active">ForumWeb</a>
+      </li>
+      <ng-container *ngIf="(accountService.currentUser$ | async) as user">
+      <li class="nav-item" >
+        <a class="nav-link" routerLink="/messages" routerLinkActive="active">Messages</a>
+      </li>
+      <li *appHasRole='["Admin", "Moderator"]' class="nav-item">
+        <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
+      </li>
+    </ng-container>
+
+  </ul>
+  <div class="navRight">
+    <div class="LoginPart"  *ngIf="(accountService.currentUser$ | async) === null">
+      <form #loginForm="ngForm" (ngSubmit)="login()" autocomplete="off">
+        <input
+          name="username"
+          [(ngModel)]="model.username" 
+          type="text" 
+          placeholder="Username"
+          class="inputText">
+        <input
+            name="password"
+            [(ngModel)]="model.password"
+            type="password"
+            placeholder="Password"
+            class="inputText">
+            <button type="submit" class="btn btn-success">Login</button>
+      </form>
+        <button routerLink="/register" class="btn register btn-primary">Register</button>
+    </div>
+ 
+
+    <div class="Welcome" *ngIf="(accountService.currentUser$ | async) as user">
+      <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>
+        <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+        <a class="dropdown-toggle text-light ml-2" dropdownToggle>Welcome {{user.knownAs || user.username | titlecase}}</a>
+        <div class="dropdown-menu mt-3" *dropdownMenu>
+          <a routerLink="/member/edit" class="dropdown-item">Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" (click)="logout()">Logout</a>
+        </div>
+      </div>
+      <button (click)="logout()" class="btn logoutBtn  btn-secondary"><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button>
+    </div>
+        
+    
+    
+  </div>
+  
+
+</nav>
+

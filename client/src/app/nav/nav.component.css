@@ -1,0 +1,100 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    width: 1321px;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.navLeft {
+    display: flex;
+}
+
+.blog {
+    margin: 10px;
+    padding: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.navRight {
+    display: flex;
+}
+
+.inputText{
+    margin: 15px;
+    padding: 5px;
+}
+
+.btn{
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 5px;
+    height: 40px;
+}
+
+img {
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+}
+
+.Welcome {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nameSurname {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.LoginPart{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.register {
+    margin-top: 16px;
+    margin-bottom: auto;
+}
+
+.title {
+    font-size: 30px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer;
+}
+
+img {
+    max-height: 50px;
+    border: 2px solid #fff;
+    display: inline;
+}
+.fa-sign-out{
+    padding: 5px;
+}
+.logoutBtn{
+    height: 47px;
+    width: 46px;
+}
+.nav-item{
+    padding: 10px;
+
+}
+.nav-link{
+    font-size: 20px;
+}
+.forumWebsite{
+    font-size: 30px;
+    margin: 0;
+    font-weight: bold;
+    margin: -5px;
+}

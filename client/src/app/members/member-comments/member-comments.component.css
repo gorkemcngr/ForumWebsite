@@ -1,0 +1,54 @@
+.topics{
+    display: flex;
+    border: 2px solid rgb(180, 173, 173);
+    cursor: pointer;
+}
+.username{
+    margin: 10px;
+    padding: 10px;
+}
+.TitleContent{
+    margin: 10px;
+   flex:5;
+}
+.PostTitle{
+    font-size: 20px;
+}
+.PostContent{
+    font-size: 13px;
+    flex:5;
+}
+.username{
+    flex:1;
+    font-size: 20px;
+}
+.CommentForm{
+    display: flex;
+}
+.comentButton{
+    float: right;
+    margin: 10px;
+    padding: 10px;
+}
+.PostCategory{
+
+    flex:1;
+}
+.fa{
+    font-size:40px;
+    padding: 12px;
+}
+.like{
+    display: flex;
+    flex-direction: column;
+    width: 120px;
+
+}
+.likeP{
+    margin-right: 15px;
+}
+.userPhoto{
+    width: 60px;
+    height: 60px;
+    margin: 7px;
+}

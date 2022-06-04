@@ -1,0 +1,21 @@
+<div class="categories">
+<hr>
+<div class="enterCategory">
+<input (keyup.enter)="AddCategory()" [(ngModel)]="newCategoryName" type="text" placeholder="Add New Category">
+<button (click)="AddCategory()" type="button"  class="btn btn-success ml-3">Add</button>
+</div>
+<hr>
+<div class="categoryList">
+    <h3 >Categories</h3>
+
+
+</div>
+
+<div class="category" *ngFor="let category of categories">
+    <div class="categoryList">
+        <div class="categoryName">{{category?.categoryName}}</div>
+        <button (click)="DeleteCategory(category.id)" class="btn btn-danger">Delete</button>
+        
+    </div>
+</div>
+</div>

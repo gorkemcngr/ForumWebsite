@@ -1,0 +1,25 @@
+.categoryList{
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    border: 1px solid rgb(64, 124, 119);
+    
+}
+.categoryName{
+    width: 200px;
+
+
+}
+.btn{
+margin: 5px;
+}
+.categories{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.enterCategory{
+    display: flex;
+}

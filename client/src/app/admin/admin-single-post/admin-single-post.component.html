@@ -1,0 +1,66 @@
+<div class="topics" *ngIf="!changePostMode">
+    <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+<div routerLink="/detail/{{post?.userName}}" class="username">{{post?.userName}}</div>
+        <div class="TitleContent">
+            <div class="PostTitle">{{post?.title}}</div>
+            <div class="PostContent">{{post?.content}}</div>
+        </div>
+        <div class="category-Button">
+            <div class="PostCategory">{{post?.categoryName}}</div>
+            <button (click)="GoToChangeMod()" class="btn btn-success comentButton">Change Post</button>
+            <i (click)="ChangePostVisibility()" class="fa fa-check" aria-hidden="true"></i>
+            <i (click)="DeletePost()" class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        
+        
+    </div>
+    <ng-container *ngIf="changePostMode">
+    <form   class="commentForm" #PostForm="ngForm" (ngSubmit)="ChangePost()" autocomplete="off">
+
+    <div class="topics">
+        <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+    <div routerLink="/detail/{{post?.userName}}" class="username">{{post?.userName}}</div>
+            <div class="TitleContent">
+                <div class="PostTitle">
+
+                    <input
+            name="title"          
+            type="text" 
+            [(ngModel)]="post.title"
+            placeholder="Title"
+            class="form-control">
+
+                    
+                </div>
+                <div class="PostContent">
+
+                    <textarea
+                    name="content"
+                    rows="5"
+                    [(ngModel)]="post.content"
+                    type="textarea" 
+                    placeholder="Content"
+                    class="form-control">
+                      
+                  </textarea>
+
+                </div>
+            </div>
+            <div class="PostCategory">
+                  <select class="selectC" name="categoryId" id="categoryId" [(ngModel)]="model.categoryId" (change)="onChange($event)">
+                    <option *ngFor="let category of categories"  name="categoryId" [value]="category.id">{{category.categoryName}}</option>
+                  </select>
+                  <button (click)="GoToNonChangeMod()" class="discardBtn btn btn-danger comentButton">Discard Changes</button>
+                  <button type="submit" class="btn btn-success comentButton">Change Post</button>
+                </div>
+           
+              
+        </div>
+    </form>
+    <hr>
+    <div *ngIf="addPostCheck" class="alert alert-danger" role="alert">
+        Please Fill in all required fields to add a comment
+      </div>
+      
+</ng-container>
+

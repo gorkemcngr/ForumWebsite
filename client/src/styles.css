@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+    background-color: rgb(42, 59, 59);
+}
+div {
+    color: white;
+    }
+textarea{
+    background:rgb(171, 183, 190);
+}
