@@ -211,6 +211,23 @@ namespace API.Services
             return new BadRequestObjectResult("Something went wrong while changing the post");
             
         }
+        public async Task<ActionResult<List<CommentDto>>> GetCommentWithUserIdWitPostId(int userId,int postId)
+        {
+            var comments = await _postRepository.GetCommentWithUserIdWitPostId(userId,postId);
+            return new OkObjectResult(_mapper.Map<CommentDto[]>(comments));
+        }
+        public async Task<ActionResult> DeleteComment(int commentId)
+        {
+            var comment = await _postRepository.GetCommentWithId(commentId);
+            if(comment == null) return new  BadRequestObjectResult("Comment doesn't exist");
+
+            int result = _postRepository.DeleteComment(comment);
+            if(result != 1) return new  BadRequestObjectResult("Something went wrong while deleting the comment");
+
+            if(await _postRepository.SaveAllAsync()) return new OkResult();
+
+            return new BadRequestObjectResult("Something went wrong while deleting the category");
+        }
         
     } 
 }

@@ -30,5 +30,7 @@ namespace API.Interfaces
         Task<PagedList<PostDto>> GetUsersPost(PostParams postParams);
         Task<Category> AddCategory(string categoryName);
         int DeleteCategory(Category category);
+        Task<List<Comment>> GetCommentWithUserIdWitPostId(int userId,int postId);
+        int DeleteComment(Comment comment);
     }
 }

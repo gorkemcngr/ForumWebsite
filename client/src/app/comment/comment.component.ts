@@ -13,6 +13,7 @@ import { PostService } from '../_services/post.service';
 import { RolesModalComponent } from '../modals/roles-modal/roles-modal.component';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LikesModalComponent } from '../modals/likes-modal/likes-modal.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-comment',
@@ -36,9 +37,11 @@ export class CommentComponent implements OnInit {
   user: User;
   nonUpdatedPost;
   bsModalRef: BsModalRef;
+  usersComments: Comment[];
   
   
-  constructor(private postService: PostService,private route: ActivatedRoute, public accountService: AccountService,private modalService: BsModalService) {
+  constructor(private postService: PostService,private route: ActivatedRoute, 
+    public accountService: AccountService,private modalService: BsModalService,private toastr:ToastrService) {
     this.commentParams = this.postService.getCommentParams();
    }
 
@@ -57,7 +60,7 @@ export class CommentComponent implements OnInit {
     
     this.loadComments(this.id);
     this.loadPost(this.id);
-
+    
     
   }
   loadPost(id2:number){
@@ -67,8 +70,16 @@ export class CommentComponent implements OnInit {
         title:this.post?.title,
         content: this.post?.content  
       }
+      this.GetUsersComments();
     })
   }
+  IsUserCommentContain(commentId:number){
+      if(this.usersComments?.find(x => x.id === commentId)) return true;
+      return false;
+
+
+  }
+
   AddComment(form: NgForm){
 
     this.postService.AddComment(this.model,this.id).subscribe(response => {    
@@ -77,8 +88,20 @@ export class CommentComponent implements OnInit {
       form.resetForm();
       this.pageChanged(Math.floor( this.pagination.totalItems/this.pagination.itemsPerPage )+1);
       this.pagination.totalItems+=1;
+      this.GetUsersComments();
     });
  
+  }
+  GetUsersComments(){
+    this.postService.GetCommentWithUserIdWitPostId(this.post.id).subscribe(response => {
+      this.usersComments = response;
+    })
+  }
+  DeleteComment(commentId: number){
+    this.postService.DeleteComment(commentId).subscribe(response => {
+      this.comments=this.comments?.filter( x => x.id !== commentId);
+      this.toastr.success("Your comment deleted succesfully");
+    })
   }
   GoToChangeMod(){
     this.model.categoryId=this.post.categoryId;
@@ -104,6 +127,7 @@ export class CommentComponent implements OnInit {
 }
 
 openRolesModal(user: User) {
+
   const config = {
     class: 'modal-dialog-centered',
     initialState: {
@@ -171,7 +195,9 @@ openRolesModal(user: User) {
   }
   GetCommentLikesWithId(commentId:number){ ////kullanılmıyor
     this.postService.GetCommentLikesWithId(commentId).subscribe(response=>{
+      
       this.likeUsers=response;
+      console.log(this.likeUsers);
      this.comments.find(x => x.id===commentId).likeCount=this.likeUsers?.length;
 
       return this.likeUsers?.length;

@@ -43,8 +43,8 @@
     <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>
     <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post.userName}}</div>
           <div class="TitleContent">
-              <div *ngIf="post.content.length >=40" class="PostTitle">{{mediumLongcontent(post.title)}}</div>
-              <div *ngIf="post.content.length <40" class="PostTitle">{{post.title}}</div>
+              <div *ngIf="post.title.length >=40" class="PostTitle">{{mediumLongcontent(post.title)}}</div>
+              <div *ngIf="post.title.length <40" class="PostTitle">{{post.title}}</div>
               <div *ngIf="post.content.length <100" class="PostContent">{{post.content}}</div>
               <div *ngIf="post.content.length >=100" class="PostContent">{{longContent(post.content)}}</div>
               

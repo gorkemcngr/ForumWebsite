@@ -132,6 +132,17 @@ namespace API.Controllers
         {
             return await _postService.ChangePost(changePostDto,postId);
         }
+        [Authorize]
+        [HttpGet("user-comment/{postId}")]
+        public async Task<ActionResult<List<CommentDto>>> GetCommentWithUserIdWitPostId(int postId)
+        {
+            return await _postService.GetCommentWithUserIdWitPostId(User.GetUserId(),postId);
+        }
+        [HttpDelete("comment/{commentId}")]
+        public async Task<ActionResult> DeleteComment(int commentId)
+        {
+            return await _postService.DeleteComment(commentId);
+        }
         
     }
 }

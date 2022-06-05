@@ -171,6 +171,10 @@ namespace API.Data
         {
             return  _context.Post.Remove(post) !=null ? 1 : 0;
         }
+        public int DeleteComment(Comment comment)
+        {
+            return  _context.Comment.Remove(comment) !=null ? 1 : 0;
+        }
         public int DeleteCategory(Category category)
         {
             return  _context.Category.Remove(category) !=null ? 1 : 0;
@@ -193,6 +197,10 @@ namespace API.Data
             return await PagedList<CommentDto>.CreateAsync(query.ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking(),commentParams.PageNumber, commentParams.PageSize); 
 
+        }
+        public async Task<List<Comment>> GetCommentWithUserIdWitPostId(int userId,int postId)
+        {
+            return await _context.Comment.Where(x => x.AppUserId == userId && x.PostId==postId).ToListAsync();
         }
         public async Task<bool> SaveAllAsync()
         {

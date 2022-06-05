@@ -119,9 +119,15 @@ export class PostService {
   GetCommentLikesWithId(commentId:number){
     return this.http.get<User[]>(this.baseUrl +'post/commentLike/'+commentId);
   }
+  DeleteComment(commentId: number){
+    return this.http.delete(this.baseUrl+'post/comment/'+commentId);
+  }
   UpdatePost(updatepost: UpdatePost,postId:number)
   {
     return this.http.put(this.baseUrl+'post/'+postId,updatepost);
+  }
+  GetCommentWithUserIdWitPostId(postId: number){
+    return this.http.get<Comment[]>(this.baseUrl +'post/user-comment/'+postId);
   }
   GetCommentsUserLikes(commentParams:CommentParams){
     let params = getPaginationHeaders(commentParams.pageNumber, commentParams.pageSize);

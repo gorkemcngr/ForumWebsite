@@ -30,5 +30,7 @@ namespace API.Interfaces
         Task<ActionResult<IEnumerable<PostDto>>> GetCurrentUserNonVisiblePosts(PostParams postParams);
         Task<ActionResult<IEnumerable<PostDto>>> GetUsersPost(PostParams postParams);
         Task<ActionResult<CategoryDto>> AddCategory(string categoryName);
+        Task<ActionResult<List<CommentDto>>> GetCommentWithUserIdWitPostId(int userId,int postId);
+        Task<ActionResult> DeleteComment(int commentId);
     }
 }

@@ -37,7 +37,11 @@
     flex-direction: column;
     justify-content: space-around;
 }
-.fa{
+.fa-heart{
+    font-size:40px;
+    padding: 12px;
+}
+.fa-heart-o{
     font-size:40px;
     padding: 12px;
 }
@@ -46,10 +50,11 @@
     flex-direction: column;
     width: 120px;
     cursor: pointer;
+    margin-left: 20px;
 
 }
 .likeP{
-    margin-right: 15px;
+ cursor: pointer;
 }
 .date{
     width: 130px;
@@ -74,4 +79,7 @@
     height: 50px;
 
     width: 160px;
+}
+.fa-times{
+    padding: 5px;
 }

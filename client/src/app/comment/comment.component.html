@@ -91,13 +91,23 @@
         <div class="TitleContent">
             <div class="PostTitle">{{comment.answer}}</div>
         </div>
-        <div class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)" *ngIf="(accountService.currentUser$ | async) !== null" [classList]="GetCommentIsLike(comment?.id)"  class="  fa-6" ></i>
-            <p (click)="openRolesModal(user)" class="likeP" *ngIf="comment.likeCount !==0"  >{{comment.likeCount}} kişi beğendi</p> 
-            <p class="likeP" *ngIf="comment.likeCount ===0"  style="margin-bottom: 40px;"></p> 
-        </div>
+
+        <div class="like-date">
         <div class="date">
             {{comment?.created | timeago}}
         </div>
+        <div class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)" *ngIf="(accountService.currentUser$ | async) !== null" [classList]="GetCommentIsLike(comment?.id)"  class="  fa-6" ></i>
+      
+        </div>
+        <div class="date">
+            <p (click)="openRolesModal(user)" class="likeP" *ngIf="comment.likeCount !==0"  >{{comment.likeCount}} kişi beğendi</p> 
+            <p class="likeP" *ngIf="comment.likeCount ===0"  style="margin-bottom: 40px;"></p> 
+        </div>
+        
+        </div>
+
+        <i *ngIf="IsUserCommentContain(comment.id)" (click)="DeleteComment(comment.id)" class=" fa fa-times fa-lg " aria-hidden="true"></i>
+        <i style="visibility: hidden;" *ngIf="!IsUserCommentContain(comment.id)"  class=" fa fa-times fa-lg " aria-hidden="true"></i>
         
         
 
