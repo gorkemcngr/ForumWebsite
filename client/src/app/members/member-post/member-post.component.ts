@@ -38,5 +38,11 @@ export class MemberPostComponent implements OnInit {
     this.postService.setPostParams(this.postParams);
     this.loadPosts();
   }
+  longContent(content:string){
+    return content.substring(0, 150).concat("...").toString();
+  }
+  mediumLongcontent(content:string){
+    return content.substring(0, 40).concat("...").toString();
+  }
 
 }
