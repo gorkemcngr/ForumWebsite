@@ -46,21 +46,16 @@ export class CommentComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    
+    this.route.paramMap.subscribe((params: ParamMap) => {
+      this.id = +params.get('id')
+    })
+    this.loadComments(this.id);
+    this.loadPost(this.id);
 
     this.GetCategories();
     this.user = JSON.parse(localStorage.getItem('user'));
     this.addPostCheck=false;
-    this.route.paramMap.subscribe((params: ParamMap) => {
-      this.id = +params.get('id')
-    })
-    if(JSON.parse(localStorage.getItem('user')) !== null){
-      this.GetCommentLikes();
-    }
-    
-    this.loadComments(this.id);
-    this.loadPost(this.id);
-    
+ 
     
   }
   loadPost(id2:number){
@@ -70,7 +65,7 @@ export class CommentComponent implements OnInit {
         title:this.post?.title,
         content: this.post?.content  
       }
-      this.GetUsersComments();
+
     })
   }
   IsUserCommentContain(commentId:number){
@@ -84,25 +79,15 @@ export class CommentComponent implements OnInit {
 
     this.postService.AddComment(this.model,this.id).subscribe(response => {    
       this.comments.push(response);
-      this.comments.find(x => x.id===response.id).likeCount=0;
       form.resetForm();
       this.pageChanged(Math.floor( this.pagination.totalItems/this.pagination.itemsPerPage )+1);
       this.pagination.totalItems+=1;
-      this.GetUsersComments();
+    
     });
  
   }
-  GetUsersComments(){
-    this.postService.GetCommentWithUserIdWitPostId(this.post.id).subscribe(response => {
-      this.usersComments = response;
-    })
-  }
-  DeleteComment(commentId: number){
-    this.postService.DeleteComment(commentId).subscribe(response => {
-      this.comments=this.comments?.filter( x => x.id !== commentId);
-      this.toastr.success("Your comment deleted succesfully");
-    })
-  }
+
+
   GoToChangeMod(){
     this.model.categoryId=this.post.categoryId;
     this.changePostMode=!this.changePostMode;
@@ -126,18 +111,6 @@ export class CommentComponent implements OnInit {
     return Math.floor( value )
 }
 
-openRolesModal(user: User) {
-
-  const config = {
-    class: 'modal-dialog-centered',
-    initialState: {
-      users:this.likeUsers
-    }
-  }
-  this.bsModalRef = this.modalService.show(LikesModalComponent, config);
-  this.bsModalRef.content.updateSelectedRoles.subscribe(values => {
-  })
-}
 
     ChangePost(){
 
@@ -163,48 +136,10 @@ openRolesModal(user: User) {
     this.postService.getAllComments(this.commentParams).subscribe(response =>{
       this.comments =response.result;
       this.pagination=response.pagination
-      this.comments?.forEach(element => {
-        this.GetCommentLikesWithId(element?.id);
-      });
     })
   }
-  AddCommentLike(comment) {
-    this.postService.AddCommentLike(comment.id).subscribe(response => {
-      if(this.commentsLikes.find(c => c.id === comment.id)){
-        this.commentsLikes=this.commentsLikes.filter(c => c.id !== comment.id);
-        this.comments.find(x => x.id===comment.id).likeCount=0;
-        this.GetCommentLikesWithId(comment.id);
-      }else{
-        this.commentsLikes.push(comment);
-        this.GetCommentLikesWithId(comment.id);
-      }});
-  }
-  GetCommentLikes() {
-    
-    this.postService.GetCommentLikes().subscribe(response =>{
-        this.commentsLikes=response;  
-    });
-    
-    
-  }
-  GetCommentIsLike(commentId:number){
 
-    var islike= this.commentsLikes?.find(c => c.id===commentId);
-    if(islike) return this.hearthClass='fa fa-heart'; 
-    else return this.hearthClass='fa fa-heart-o'; 
-  }
-  GetCommentLikesWithId(commentId:number){ ////kullanılmıyor
-    this.postService.GetCommentLikesWithId(commentId).subscribe(response=>{
-      
-      this.likeUsers=response;
-      console.log(this.likeUsers);
-     this.comments.find(x => x.id===commentId).likeCount=this.likeUsers?.length;
 
-      return this.likeUsers?.length;
-    });
-
-   
-  }
   pageChanged(event: any) {
     if(typeof event === 'number'){
       this.commentParams.pageNumber = event;
@@ -215,6 +150,15 @@ openRolesModal(user: User) {
     
     this.postService.setCommentParams(this.commentParams);
     this.loadComments(this.id);
+  }
+  RefReshPage(){
+    this.loadComments(this.id);
+    this.toastr.success("change completed successfully");
+    if(this.comments.length === 1){
+      
+      this.pagination.currentPage=this.pagination.currentPage-1;
+    }
+    
   }
 
 }
