@@ -79,7 +79,8 @@
             <div class="PostContent">{{post?.content}}</div>
         </div>
         <div class="PostCategory">{{post?.categoryName}}</div>
-        
+        <button (click)="deletePost(post.id)" *ngIf="(user?.roles?.includes('Admin') || user?.roles?.includes('Moderator'))" class="btn btn-danger deletebtn">Delete</button>
+
     </div>
     
 

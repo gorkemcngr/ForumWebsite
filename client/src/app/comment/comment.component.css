@@ -83,3 +83,8 @@
 .fa-times{
     padding: 5px;
 }
+.deletebtn{
+    height: 35px;
+    padding: 5px;
+    margin: 10px;
+}

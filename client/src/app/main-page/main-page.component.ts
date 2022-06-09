@@ -7,6 +7,8 @@ import { Post } from '../_models/post';
 import { AccountService } from '../_services/account.service';
 import { PostService } from '../_services/post.service';
 import { User } from '../_models/user';
+import { AdminService } from '../_services/admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-main-page',
@@ -23,15 +25,21 @@ export class MainPageComponent implements OnInit {
   user: User;
   mymodel;
 
-  constructor(public postService: PostService,private route:Router,public accountService: AccountService) {
+  constructor(public postService: PostService,private route:Router,
+    public accountService: AccountService,private adminService: AdminService, private toastr: ToastrService) {
     this.postParams = this.postService.getPostParams();
    }
 
   ngOnInit(): void {
-    this.user = JSON.parse(localStorage.getItem('user'));
+    
+    
     this.addPostCheck=false;
     this.loadPosts();
     this.GetCategories();
+     this.accountService.currentUser$.subscribe(response => {
+      this.user = response;
+    })
+    
   }
   changeWebsite(e) {  
 
@@ -77,6 +85,13 @@ export class MainPageComponent implements OnInit {
     this.postService.AddPost(this.model).subscribe(response => {
       this.posts.push(response);
       this.route.navigate(['/comment/'+response.id]);
+    })
+  }
+  deletePost(postId: number){
+    this.adminService.DeletePost(postId).subscribe(response => {
+      this.posts = this.posts.filter(x => x.id !==postId);
+      this.toastr.success("Post Deleted successfully");
+      this.loadPosts();
     })
   }
 

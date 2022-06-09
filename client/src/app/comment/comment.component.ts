@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Category } from '../_models/category';
 import { UpdatePost } from '../_models/updatePost';
 import { Comment } from '../_models/comment';
@@ -14,6 +14,7 @@ import { RolesModalComponent } from '../modals/roles-modal/roles-modal.component
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { LikesModalComponent } from '../modals/likes-modal/likes-modal.component';
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from '../_services/admin.service';
 
 @Component({
   selector: 'app-comment',
@@ -41,7 +42,8 @@ export class CommentComponent implements OnInit {
   
   
   constructor(private postService: PostService,private route: ActivatedRoute, 
-    public accountService: AccountService,private modalService: BsModalService,private toastr:ToastrService) {
+    public accountService: AccountService,private modalService: BsModalService,
+    private toastr:ToastrService,private adminService:AdminService,private router:Router) {
     this.commentParams = this.postService.getCommentParams();
    }
 
@@ -157,6 +159,12 @@ export class CommentComponent implements OnInit {
       this.pagination.currentPage=this.pagination.currentPage-1;
     }
     
+  }
+  deletePost(postId: number){
+    this.adminService.DeletePost(postId).subscribe(response => {
+      this.router.navigate(['/']);
+      this.toastr.success("Post Deleted successfully");
+    })
   }
 
 }

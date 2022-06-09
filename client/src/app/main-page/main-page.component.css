@@ -19,6 +19,7 @@
     flex: 5;
    
 }
+
 .PostTitle{
     font-size: 20px;
     font-weight: bold;
@@ -52,4 +53,17 @@
 }
 .postsearch{
     width: 250px;
+}
+.fa-times{
+    padding: 5px;
+
+}
+.fa-times:hover{
+    color: rgb(102, 99, 94);
+}
+.deletebtn{
+    height: 35px;
+    padding: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
 }

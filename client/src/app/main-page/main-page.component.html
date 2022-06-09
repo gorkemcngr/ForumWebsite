@@ -40,11 +40,14 @@
 
   <input class="postsearch" placeholder="What are you looking for" type="text" [ngModel]="mymodel" (ngModelChange)="valuechange($event)" />
 
-  <div routerLink="/comment/{{post.id}}"   class="topics"  *ngFor="let post of posts">
-    <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+<div class="out-topic"  *ngFor="let post of posts">
+  <div    class="topics" >
+    <img *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+    <img *ngIf="user?.username==post?.userName" routerLink="/member/edit" src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+
     <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>
     <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post.userName}}</div>
-          <div class="TitleContent">
+          <div routerLink="/comment/{{post.id}}" class="TitleContent">
               <div *ngIf="post.title.length >=40" class="PostTitle">{{mediumLongcontent(post.title)}}</div>
               <div *ngIf="post.title.length <40" class="PostTitle">{{post.title}}</div>
               <div *ngIf="post.content.length <100" class="PostContent">{{post.content}}</div>
@@ -55,7 +58,10 @@
           <div class="date">
             {{post?.created | timeago}}
         </div>
+        <button (click)="deletePost(post.id)" *ngIf="(user?.roles?.includes('Admin') || user?.roles?.includes('Moderator'))" class="btn btn-danger deletebtn">Delete</button>
   </div>
+  
+</div>
   <hr style="visibility: hidden;">
   <div class="d-flex justify-content-center" *ngIf="pagination && posts.length >=1 ">
     <pagination 
