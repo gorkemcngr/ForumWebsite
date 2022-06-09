@@ -1,0 +1,20 @@
+.footer{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 1321px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    background-color: #007BFF;
+}
+.fa{
+    margin-left: 20px;
+}
+a{
+    text-decoration:none;
+     border:none;
+     color: white;
+}

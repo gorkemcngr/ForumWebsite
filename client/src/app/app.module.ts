@@ -42,6 +42,7 @@ import { LikesModalComponent } from './modals/likes-modal/likes-modal.component'
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { SingleCommentComponent } from './single-comment/single-comment.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { SingleCommentComponent } from './single-comment/single-comment.componen
     AdminCategoryComponent,
     LikesModalComponent,
     SingleCommentComponent,
+    FooterComponent,
     
 
   ],
