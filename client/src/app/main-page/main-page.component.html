@@ -37,7 +37,9 @@
     </div>
   
   <h2>New Topics</h2>
-  
+
+  <input class="postsearch" placeholder="What are you looking for" type="text" [ngModel]="mymodel" (ngModelChange)="valuechange($event)" />
+
   <div routerLink="/comment/{{post.id}}"   class="topics"  *ngFor="let post of posts">
     <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
     <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>

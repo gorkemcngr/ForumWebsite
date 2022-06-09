@@ -84,8 +84,8 @@
     
 
 <h2 style="margin-top: 50px;">Answers</h2>
-<ng-container *ngFor="let comment of comments">
-    <app-single-comment (deleteComment)="RefReshPage($event)"  [post]="post" [user]="user" [comment]="comment"></app-single-comment>
+<ng-container >
+    <app-single-comment *ngFor="let comment of comments" (deleteComment)="RefReshPage($event)"  [post]="post" [user]="user" [comment]="comment"></app-single-comment>
 
 </ng-container>
 

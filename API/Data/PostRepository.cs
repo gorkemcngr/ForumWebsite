@@ -30,6 +30,10 @@ namespace API.Data
             {
                 query=query.Where(x => x.CategoryId==postParams.CategoryId);
             }
+            if(postParams.PostTitle !=null)
+            {
+                query = query.Where(x => x.Title.ToLower().Contains(postParams.PostTitle.ToLower()));
+            }
             query=query.Where(x => x.PostVisibility==true); //only get the visible posts
             query=query.OrderByDescending(x => x.Created);
 

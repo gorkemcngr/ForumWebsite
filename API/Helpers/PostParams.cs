@@ -9,5 +9,6 @@ namespace API.Helpers
     {
         public int? CategoryId { get; set; }
         public int? userId { get; set; }
+        public string? PostTitle { get; set; }
     }
 }

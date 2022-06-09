@@ -78,7 +78,7 @@ export class CommentComponent implements OnInit {
   AddComment(form: NgForm){
 
     this.postService.AddComment(this.model,this.id).subscribe(response => {    
-      this.comments.push(response);
+      //this.comments.push(response);
       form.resetForm();
       this.pageChanged(Math.floor( this.pagination.totalItems/this.pagination.itemsPerPage )+1);
       this.pagination.totalItems+=1;
@@ -146,8 +146,6 @@ export class CommentComponent implements OnInit {
     }else{
       this.commentParams.pageNumber = event.page;
     }
-    
-    
     this.postService.setCommentParams(this.commentParams);
     this.loadComments(this.id);
   }

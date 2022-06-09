@@ -21,6 +21,7 @@ export class MainPageComponent implements OnInit {
   postParams: PostParams;
   addPostCheck:boolean;
   user: User;
+  mymodel;
 
   constructor(public postService: PostService,private route:Router,public accountService: AccountService) {
     this.postParams = this.postService.getPostParams();
@@ -52,6 +53,13 @@ export class MainPageComponent implements OnInit {
       });
     })
     
+  }
+  valuechange(newValue) {
+    this.mymodel = newValue;
+    this.pagination.currentPage=1;
+    this.postParams.postTitle=newValue;
+    this.loadPosts();
+    this.postParams.postTitle=null;
   }
   GetCategories() {
     this.postService.getcategories().subscribe(response =>{

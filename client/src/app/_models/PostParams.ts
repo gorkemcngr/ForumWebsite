@@ -4,4 +4,5 @@ export class PostParams {
     pageSize = 5;
     categoryId;
     userId;
+    postTitle;
 }

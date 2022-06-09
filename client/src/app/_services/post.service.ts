@@ -56,6 +56,9 @@ export class PostService {
     if(paginationParams.categoryId >0){
       params = params.append('categoryId', paginationParams.categoryId.toString());
     }
+    if(paginationParams.postTitle?.length>0){
+      params = params.append('postTitle', paginationParams.postTitle.toString());
+    }
     
     return getPaginatedResult<Post[]>(this.baseUrl + 'post', params, this.http).pipe(
       map((response)=>{
