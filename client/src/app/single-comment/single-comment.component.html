@@ -1,4 +1,4 @@
-<div class="topics" *ngIf="isLoaded">
+<div class="topics" >
 <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
 <div *ngIf="user?.username!=comment?.username" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
 <div *ngIf="user?.username==comment?.username" routerLink="/member/edit" class="username">{{comment.userName}}</div>
@@ -14,7 +14,7 @@
 
 </div>
 <div class="date">
-    <p (click)="openRolesModal(user)" class="likeP" *ngIf="likeUsers?.length>0"  >{{likeUsers?.length}} kişi beğendi</p> 
+    <p (click)="openRolesModal(user)" class="likeP" *ngIf="likeUsers?.length>0 && isLoaded"  >{{likeUsers?.length}} kişi beğendi</p> 
     <p class="likeP" *ngIf="likeUsers?.length===0"  style="margin-bottom: 40px;"></p> 
 </div>
 
