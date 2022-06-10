@@ -23,6 +23,7 @@ export class SingleCommentComponent implements OnInit {
   bsModalRef: BsModalRef;
   @Output() deleteComment = new EventEmitter<number>();
   isLoaded:boolean=false;
+  issload:boolean;
 
   constructor(public accountService: AccountService,private postService: PostService,private modalService: BsModalService) { }
 
