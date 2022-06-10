@@ -1,4 +1,4 @@
-<div class="topics">
+<div class="topics" *ngIf="isLoaded">
 <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
 <div *ngIf="user?.username!=comment?.username" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
 <div *ngIf="user?.username==comment?.username" routerLink="/member/edit" class="username">{{comment.userName}}</div>

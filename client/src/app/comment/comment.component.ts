@@ -39,6 +39,7 @@ export class CommentComponent implements OnInit {
   nonUpdatedPost;
   bsModalRef: BsModalRef;
   usersComments: Comment[];
+  isLoaded:boolean=false;
   
   
   constructor(private postService: PostService,private route: ActivatedRoute, 
@@ -138,6 +139,7 @@ export class CommentComponent implements OnInit {
     this.postService.getAllComments(this.commentParams).subscribe(response =>{
       this.comments =response.result;
       this.pagination=response.pagination
+      this.isLoaded=true;
     })
   }
 

@@ -22,6 +22,7 @@ export class SingleCommentComponent implements OnInit {
   likeUsers:User[];
   bsModalRef: BsModalRef;
   @Output() deleteComment = new EventEmitter<number>();
+  isLoaded:boolean=false;
 
   constructor(public accountService: AccountService,private postService: PostService,private modalService: BsModalService) { }
 
@@ -45,6 +46,7 @@ GetCommentLikes() {
   this.postService.GetCommentLikes().subscribe(response =>{
       this.commentsLikes=response;  
       console.log(response);
+      this.isLoaded=true;
   });
 }
 DeleteComment(){
