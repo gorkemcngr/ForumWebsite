@@ -53,7 +53,7 @@
                                     <span class="text-warning" *ngIf="message.dateRead 
                                         && message.senderUsername !== username">
                                         (read {{message.dateRead | timeago}})
-                                        {{message.dateRead}}
+
                                     </span>
                                     
                                 </small>
@@ -75,7 +75,7 @@
                     required
                     [(ngModel)]="messageContent"
                     type="text" 
-                    class="form-control input-sm" 
+                    class="form-control input-sm"
                     placeholder="Send a private message">
                 <div class="input-group-append">
                     <button [disabled]="!messageForm.valid" class="btn-primary" type="submit">Send</button>
