@@ -6,7 +6,8 @@
     <p>You can make changes on your Post</p>
     <div class="topics" *ngIf="!changePostMode">
         <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
-    <div routerLink="/detail/{{post?.userName}}" class="username">{{post?.userName}}</div>
+        <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>
+        <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post.userName}}</div>
             <div class="TitleContent">
                 <div class="PostTitle">{{post?.title}}</div>
                 <div class="PostContent">{{post?.content}}</div>
