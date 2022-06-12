@@ -26,9 +26,13 @@ export class SingleCommentComponent implements OnInit {
   constructor(public accountService: AccountService,private postService: PostService,private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    this.GetUsersComments();
+    
+    if(JSON.parse(localStorage.getItem('user')) !==null){
+      this.GetUsersComments();
+      
+      this.GetCommentLikes();
+    }
     this.GetCommentLikesWithId(this.comment.id);
-    this.GetCommentLikes();
   }
 
   IsUserCommentContain(commentId:number){

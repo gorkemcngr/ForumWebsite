@@ -50,6 +50,7 @@
 }
 .date{
     padding-right: 10px;
+    opacity: 0.8;
 }
 .postsearch{
     width: 250px;

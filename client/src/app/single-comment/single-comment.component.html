@@ -8,16 +8,17 @@
 
 <div class="like-date">
 <div class="date">
-    {{comment?.created | timeago}}
+    {{comment?.created | timeago}} <i class="fa fa-clock-o"></i>
 </div>
+
 <div class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)" *ngIf="(accountService.currentUser$ | async) !== null" [classList]="GetCommentIsLike(comment?.id)"  class="  fa-6" ></i>
 
 </div>
 <div style="visibility: hidden;" class="like"> <i class="likeIcon"  (click)="AddCommentLike(comment)" *ngIf="(accountService.currentUser$ | async) === null" [classList]="GetCommentIsLike(comment?.id)"  class="  fa-6" ></i>
 
 </div>
-<div class="date">
-    <p (click)="openRolesModal(user)" class="likeP" *ngIf="likeUsers?.length>0"  >{{likeUsers?.length}} kişi beğendi</p> 
+<div class="outLike">
+    <p (click)="openRolesModal(user)" class="likePm" *ngIf="likeUsers?.length>0"  >{{likeUsers?.length}} user(s) liked ♥</p> 
     <p class="likeP" *ngIf="likeUsers?.length===0"  style="margin-bottom: 40px;"></p> 
 </div>
 

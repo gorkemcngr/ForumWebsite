@@ -56,7 +56,7 @@
           </div>
           <div class="PostCategory">{{post.categoryName}}</div>
           <div class="date">
-            {{post?.created | timeago}}
+            {{post?.created | timeago}} <i class="fa fa-clock-o"></i>
         </div>
         <button (click)="deletePost(post.id)" *ngIf="(user?.roles?.includes('Admin') || user?.roles?.includes('Moderator'))" class="btn btn-danger deletebtn">Delete</button>
   </div>

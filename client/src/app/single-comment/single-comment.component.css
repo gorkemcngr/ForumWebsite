@@ -55,8 +55,20 @@
 }
 .likeP{
  cursor: pointer;
+
+}
+.likePm{
+ cursor: pointer;
+ background-color: rgb(151, 161, 137);
+ padding: 5px;
+ border-radius: 5px;
 }
 .date{
+    width: 130px;
+    margin-right: 10px;
+    opacity: 0.8;
+}
+.outLike{
     width: 130px;
     margin-right: 10px;
 }
