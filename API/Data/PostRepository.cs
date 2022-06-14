@@ -136,6 +136,7 @@ namespace API.Data
             var query = _context.Comment.Include(c => c.AppUser).ThenInclude(u => u.Photos).AsQueryable();
 
             query = query.Where(x => x.PostId==commentParams.PostId);
+            query = query.OrderBy(x => x.Created);
 
             return await PagedList<CommentDto>.CreateAsync(query.ProjectTo<CommentDto>(_mapper.ConfigurationProvider)
                 .AsNoTracking(),commentParams.PageNumber, commentParams.PageSize); 

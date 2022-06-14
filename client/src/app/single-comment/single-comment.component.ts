@@ -26,8 +26,6 @@ export class SingleCommentComponent implements OnInit {
   constructor(public accountService: AccountService,private postService: PostService,private modalService: BsModalService) { }
 
   ngOnInit(): void {
-    console.log(this.post.userName);
-    console.log(this.comment.username);
     if(JSON.parse(localStorage.getItem('user')) !==null){
       this.GetUsersComments();
       
@@ -49,7 +47,6 @@ GetUsersComments(){
 GetCommentLikes() {
   this.postService.GetCommentLikes().subscribe(response =>{
       this.commentsLikes=response;  
-      console.log(response);
   });
 }
 DeleteComment(){
