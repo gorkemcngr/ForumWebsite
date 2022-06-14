@@ -6,8 +6,8 @@
     <p>You can make changes on your Post</p>
     <div class="topics" *ngIf="!changePostMode">
         <img src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
-        <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post.userName}}</div>
-        <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post.userName}}</div>
+        <div *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" class="username">{{post?.userName}}</div>
+        <div *ngIf="user?.username==post?.userName" routerLink="/member/edit" class="username">{{post?.userName}}</div>
             <div class="TitleContent">
                 <div class="PostTitle">{{post?.title}}</div>
                 <div class="PostContent">{{post?.content}}</div>
@@ -87,8 +87,8 @@
     
 
 <h2 style="margin-top: 50px;">Answers</h2>
-<ng-container >
-    <app-single-comment *ngFor="let comment of comments" (deleteComment)="RefReshPage($event)"  [post]="post" [user]="user" [comment]="comment"></app-single-comment>
+<ng-container *ngFor="let comment of comments">
+    <app-single-comment  (deleteComment)="RefReshPage($event)"  [post]="post" [user]="user" [comment]="comment"></app-single-comment>
 
 </ng-container>
 

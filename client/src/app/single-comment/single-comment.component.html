@@ -1,7 +1,9 @@
 <div class="topics">
 <img src="{{comment?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
+{{comment?.username}}
 <div *ngIf="user?.username!=comment?.username" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
-<div *ngIf="user?.username==comment?.username" routerLink="/member/edit" class="username">{{comment.userName}}</div>
+<div *ngIf="user?.username==comment?.username && user?.username!==null" routerLink="/member/edit" class="username">{{comment.userName}}</div>
+<div *ngIf="user?.username==null" routerLink="/detail/{{comment.userName}}" class="username">{{comment.userName}}</div>
 <div class="TitleContent">
     <div class="PostTitle">{{comment.answer}}</div>
 </div>
