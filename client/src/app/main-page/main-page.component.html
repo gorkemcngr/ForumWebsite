@@ -36,10 +36,12 @@
       Please Fill in all required fields to add a comment
     </div>
   
-  <h2>New Topics</h2>
+  <h2 *ngIf="posts.length >=1">New Topics</h2>
 
-  <input class="postsearch" placeholder="What are you looking for" type="text" [ngModel]="mymodel" (ngModelChange)="valuechange($event)" />
-
+  <input *ngIf="posts.length >=1" class="postsearch" placeholder="What are you looking for" type="text" [ngModel]="mymodel" (ngModelChange)="valuechange($event)" />
+  <div *ngIf="posts.length <1" class="alert alert-warning" role="alert">
+    No posts found for your search criteria... You can reset the category
+  </div>
 <div class="out-topic"  *ngFor="let post of posts">
   <div    class="topics" >
     <img *ngIf="user?.username!=post?.userName" routerLink="/detail/{{post.userName}}" src="{{post?.photoUrl || './assets/user.png'}}" class="rounded-circle userPhoto">
